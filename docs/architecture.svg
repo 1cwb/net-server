@@ -1,0 +1,294 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="3260" viewBox="0 0 2400 3260">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/></filter>
+</defs>
+<rect width="2400" height="3260" fill="#f5f7fb"/>
+<text x="80" y="92" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="54" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">app_center 网络服务器架构</text>
+<text x="82" y="142" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="400" fill="#475569" text-anchor="start" opacity="1">C++17 · Reactor · epoll ET · 可插拔 Codec · HTTP / MQTT</text>
+<line x1="80" y1="176" x2="2320" y2="176" stroke="#cbd5e1" stroke-width="2"/>
+<text x="1550" y="96" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="700" fill="#64748b" text-anchor="start" opacity="1">图例</text>
+<rect x="1610" y="82" width="18" height="18" rx="4" fill="#3b82f6"/>
+<text x="1636" y="97" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">应用</text>
+<rect x="1742" y="82" width="18" height="18" rx="4" fill="#7c3aed"/>
+<text x="1768" y="97" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">协议</text>
+<rect x="1874" y="82" width="18" height="18" rx="4" fill="#16a34a"/>
+<text x="1900" y="97" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">连接</text>
+<rect x="2006" y="82" width="18" height="18" rx="4" fill="#ea580c"/>
+<text x="2032" y="97" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">Reactor</text>
+<rect x="2138" y="82" width="18" height="18" rx="4" fill="#64748b"/>
+<text x="2164" y="97" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">系统</text>
+<rect x="100" y="210" width="1360" height="200" rx="18" fill="#e0edff" stroke="#3b82f6" stroke-width="2.5" opacity="1"/>
+<text x="126" y="252" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="27" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">① 应用层</text>
+<text x="1434" y="252" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="end" opacity="1">src/main.cpp</text>
+<rect x="135" y="275" width="410" height="110" rx="12" fill="#ffffff" stroke="#3b82f6" stroke-width="1.8" opacity="0.95"/>
+<text x="153" y="306" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">handle_echo()</text>
+<text x="153" y="336" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">裸 TCP 回显</text>
+<text x="153" y="361" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">收到的字节原样返回</text>
+<rect x="565" y="275" width="410" height="110" rx="12" fill="#ffffff" stroke="#3b82f6" stroke-width="1.8" opacity="0.95"/>
+<text x="583" y="306" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">handle_http()</text>
+<text x="583" y="336" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">GET /health /time</text>
+<text x="583" y="361" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">POST /echo</text>
+<rect x="995" y="275" width="430" height="110" rx="12" fill="#ffffff" stroke="#3b82f6" stroke-width="1.8" opacity="0.95"/>
+<text x="1013" y="306" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">MqttHub</text>
+<text x="1013" y="336" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">CONNECT / SUBSCRIBE</text>
+<text x="1013" y="361" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">PUBLISH 转发 / PING</text>
+<rect x="100" y="480" width="1360" height="220" rx="18" fill="#ebe7ff" stroke="#7c3aed" stroke-width="2.5" opacity="1"/>
+<text x="126" y="522" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="27" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">② 协议层</text>
+<text x="1434" y="522" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="end" opacity="1">src/codec/</text>
+<rect x="135" y="545" width="410" height="140" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" opacity="0.95"/>
+<text x="153" y="576" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">Codec（抽象接口）</text>
+<text x="153" y="606" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">decode(Buffer&amp;, emit)</text>
+<text x="153" y="631" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">字节流 → Message 帧</text>
+<text x="153" y="656" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">encode(frame) → 字节</text>
+<rect x="565" y="545" width="410" height="140" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" opacity="0.95"/>
+<text x="583" y="576" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">HttpCodec</text>
+<text x="583" y="606" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">请求行 / Header</text>
+<text x="583" y="631" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">Content-Length</text>
+<text x="583" y="656" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">chunked 分块</text>
+<rect x="995" y="545" width="430" height="140" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" opacity="0.95"/>
+<text x="1013" y="576" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">MqttCodec</text>
+<text x="1013" y="606" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">固定头 + 变长长度</text>
+<text x="1013" y="631" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">CONNECT / SUBSCRIBE</text>
+<text x="1013" y="656" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">PUBLISH / PING</text>
+<rect x="100" y="770" width="1360" height="310" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5" opacity="1"/>
+<text x="126" y="812" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="27" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">③ 服务 / 连接层</text>
+<text x="1434" y="812" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="end" opacity="1">src/net/</text>
+<rect x="135" y="835" width="1290" height="225" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.8" opacity="1"/>
+<text x="155" y="866" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="22" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">TcpServer</text>
+<text x="265" y="866" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">连接表 + callbacks + Codec 工厂</text>
+<rect x="155" y="885" width="360" height="150" rx="12" fill="#ffffff" stroke="#16a34a" stroke-width="1.8" opacity="0.95"/>
+<text x="173" y="916" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">Acceptor</text>
+<text x="173" y="946" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">listen / accept4</text>
+<text x="173" y="971" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">ET 循环 accept</text>
+<text x="173" y="996" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">轮询分配 worker loop</text>
+<rect x="545" y="885" width="880" height="150" rx="12" fill="#ffffff" stroke="#16a34a" stroke-width="1.8" opacity="0.95"/>
+<text x="563" y="916" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">TcpConnection</text>
+<text x="563" y="946" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">连接状态机（connecting → connected → closed）</text>
+<text x="563" y="971" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">input / output Buffer + Codec</text>
+<text x="563" y="996" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">send / shutdown / forceClose</text>
+<rect x="100" y="1150" width="1360" height="420" rx="18" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5" opacity="1"/>
+<text x="126" y="1192" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="27" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">④ Reactor 核心</text>
+<text x="1434" y="1192" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="end" opacity="1">EventLoop</text>
+<rect x="135" y="1212" width="1290" height="270" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8" opacity="1"/>
+<text x="155" y="1242" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">EventLoop::loop()</text>
+<text x="415" y="1242" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="17" font-weight="400" fill="#475569" text-anchor="start" opacity="1">poll → dispatch → timers → pending functions</text>
+<rect x="155" y="1258" width="600" height="88" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.8" opacity="0.95"/>
+<text x="173" y="1289" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">Poller / EpollPoller</text>
+<text x="173" y="1319" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">epoll_wait + EPOLLET</text>
+<text x="173" y="1344" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">返回就绪 Channel 列表</text>
+<rect x="775" y="1258" width="650" height="88" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.8" opacity="0.95"/>
+<text x="793" y="1289" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">TimerQueue</text>
+<text x="793" y="1319" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">最小堆：runAfter / runEvery</text>
+<text x="793" y="1344" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">nextTimeoutMs 决定 poll 超时</text>
+<rect x="155" y="1360" width="600" height="88" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.8" opacity="0.95"/>
+<text x="173" y="1391" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">Channel</text>
+<text x="173" y="1421" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">fd + 读 / 写 / 错误回调</text>
+<text x="173" y="1446" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">ties shared_ptr 保活</text>
+<rect x="775" y="1360" width="650" height="88" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.8" opacity="0.95"/>
+<text x="793" y="1391" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">pendingFunctors + eventfd</text>
+<text x="793" y="1421" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">queueInLoop 跨线程投递</text>
+<text x="793" y="1446" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">write(eventfd) 唤醒 epoll</text>
+<rect x="135" y="1500" width="1290" height="52" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.8" opacity="1"/>
+<text x="155" y="1534" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">EventLoopThread / EventLoopThreadPool</text>
+<text x="600" y="1534" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">一个线程一个 EventLoop（主从 Reactor）</text>
+<rect x="100" y="1640" width="1360" height="140" rx="18" fill="#e2e8f0" stroke="#64748b" stroke-width="2.5" opacity="1"/>
+<text x="126" y="1682" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="27" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">⑤ 操作系统</text>
+<text x="1434" y="1682" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="end" opacity="1">Linux</text>
+<text x="135" y="1735" font-family="Consolas, Cascadia Mono, Microsoft YaHei, monospace" font-size="20" font-weight="400" fill="#475569" text-anchor="start" opacity="1">socket / bind / listen / accept4 / recv / send / epoll_wait / eventfd</text>
+<line x1="430" y1="472" x2="430" y2="418" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="442" y="451" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#1d4ed8" text-anchor="start" opacity="1">Message{frame, type}</text>
+<line x1="900" y1="418" x2="900" y2="472" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="912" y="451" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#b91c1c" text-anchor="start" opacity="1">send(bytes)</text>
+<line x1="430" y1="762" x2="430" y2="708" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="442" y="741" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#1d4ed8" text-anchor="start" opacity="1">字节流</text>
+<line x1="900" y1="708" x2="900" y2="762" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="912" y="741" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#b91c1c" text-anchor="start" opacity="1">编码后的字节</text>
+<line x1="430" y1="1142" x2="430" y2="1088" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="442" y="1121" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#1d4ed8" text-anchor="start" opacity="1">Channel 事件回调</text>
+<line x1="900" y1="1088" x2="900" y2="1142" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="912" y="1121" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#b91c1c" text-anchor="start" opacity="1">epoll_ctl / 注册事件</text>
+<line x1="430" y1="1632" x2="430" y2="1578" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="442" y="1611" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#1d4ed8" text-anchor="start" opacity="1">fd 事件</text>
+<line x1="900" y1="1578" x2="900" y2="1632" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+<text x="912" y="1611" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="16" font-weight="600" fill="#b91c1c" text-anchor="start" opacity="1">epoll_wait / recv / send</text>
+<rect x="1520" y="210" width="780" height="520" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="1520" y="210" width="780" height="8" rx="4" fill="#3b82f6" stroke="#3b82f6" stroke-width="0" opacity="1"/>
+<text x="1546" y="256" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">线程模型</text>
+<text x="1546" y="294" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">主线程 main</text>
+<text x="1546" y="328" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1"> └─ baseLoop (EventLoop)</text>
+<text x="1546" y="362" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">     ├─ Acceptor  echo  :9000</text>
+<text x="1546" y="396" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">     ├─ Acceptor  http  :8080</text>
+<text x="1546" y="430" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">     ├─ Acceptor  mqtt  :1883</text>
+<text x="1546" y="464" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">     └─ EventLoopThreadPool × 3</text>
+<text x="1546" y="498" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">         ├─ worker loop #0</text>
+<text x="1546" y="532" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">         ├─ worker loop #1</text>
+<text x="1546" y="566" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="19" font-weight="400" fill="#475569" text-anchor="start" opacity="1">         └─ ...</text>
+<text x="1546" y="648" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="17" font-weight="400" fill="#475569" text-anchor="start" opacity="1">baseLoop 只负责 accept；worker 负责连接 I/O</text>
+<text x="1546" y="676" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="17" font-weight="400" fill="#475569" text-anchor="start" opacity="1">--threads 0 时全部跑在 baseLoop 上</text>
+<text x="1546" y="704" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="17" font-weight="400" fill="#475569" text-anchor="start" opacity="1">每个 loop 内部无锁，串行处理自己的 fd</text>
+<rect x="1520" y="760" width="780" height="430" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="1520" y="760" width="780" height="8" rx="4" fill="#16a34a" stroke="#16a34a" stroke-width="0" opacity="1"/>
+<text x="1546" y="806" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">对象所有权 / 生命周期</text>
+<text x="1546" y="844" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">EventLoop</text>
+<text x="1546" y="882" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">  owns Poller / TimerQueue / wakeup Channel</text>
+<text x="1546" y="920" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">TcpServer</text>
+<text x="1546" y="958" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">  owns Acceptor / ThreadPool / connections_ map</text>
+<text x="1546" y="996" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">TcpConnection（shared_ptr）</text>
+<text x="1546" y="1034" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">  owns Channel / Codec / input &amp; output Buffer</text>
+<text x="1546" y="1072" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">保活</text>
+<text x="1546" y="1110" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">  Channel::tie(shared_from_this())</text>
+<text x="1546" y="1148" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">  事件回调期间不会被释放</text>
+<rect x="1520" y="1220" width="780" height="240" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="1520" y="1220" width="780" height="8" rx="4" fill="#7c3aed" stroke="#7c3aed" stroke-width="0" opacity="1"/>
+<text x="1546" y="1266" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">工具模块</text>
+<text x="1546" y="1304" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">Buffer：读写缓冲，string_view 零拷贝切帧</text>
+<text x="1546" y="1342" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">sockets：socket / bind / listen / nodelay</text>
+<text x="1546" y="1380" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">runtime：信号处理 + g_running 停止标志</text>
+<rect x="1520" y="1490" width="780" height="290" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="1520" y="1490" width="780" height="8" rx="4" fill="#ea580c" stroke="#ea580c" stroke-width="0" opacity="1"/>
+<text x="1546" y="1536" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">关键设计</text>
+<text x="1546" y="1574" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">• 一个 EventLoop = 一个线程，热路径无锁</text>
+<text x="1546" y="1614" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">• epoll ET + 非阻塞 + 读到 EAGAIN</text>
+<text x="1546" y="1654" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">• eventfd 唤醒跨线程任务</text>
+<text x="1546" y="1694" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">• registered_ 防止 loop 销毁后访问 Channel</text>
+<text x="1546" y="1734" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">• Codec 可插拔：HTTP / MQTT / 私有协议</text>
+<text x="1546" y="1774" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="start" opacity="1">• 优雅关闭：shutdown(SHUT_WR) + 半关闭</text>
+<line x1="80" y1="1856" x2="2320" y2="1856" stroke="#cbd5e1" stroke-width="2"/>
+<text x="80" y="1912" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="34" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">核心流程</text>
+<text x="300" y="1910" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#475569" text-anchor="start" opacity="1">从内核事件到业务回调，再回到内核</text>
+<rect x="60" y="1950" width="740" height="580" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="60" y="1950" width="740" height="58" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<rect x="60" y="1980" width="740" height="28" rx="0" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<circle cx="98" cy="1979" r="17" fill="#38bdf8"/>
+<text x="98" y="1987" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#082f49" text-anchor="middle" opacity="1">1</text>
+<text x="128" y="1989" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="start" opacity="1">启动流程</text>
+<circle cx="90" cy="2038" r="4" fill="#3b82f6"/>
+<text x="106" y="2044" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">main() 解析参数 + 安装信号</text>
+<circle cx="90" cy="2068" r="4" fill="#3b82f6"/>
+<text x="106" y="2074" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">创建 EventLoop baseLoop</text>
+<circle cx="90" cy="2098" r="4" fill="#3b82f6"/>
+<text x="106" y="2104" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">构造 3 个 TcpServer</text>
+<text x="130" y="2134" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">Acceptor: socket/bind/listen</text>
+<text x="130" y="2164" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">EventLoopThreadPool(N)</text>
+<circle cx="90" cy="2188" r="4" fill="#3b82f6"/>
+<text x="106" y="2194" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">设置 callbacks + Codec 工厂</text>
+<circle cx="90" cy="2218" r="4" fill="#3b82f6"/>
+<text x="106" y="2224" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">start(): 启动 worker + listen</text>
+<circle cx="90" cy="2248" r="4" fill="#3b82f6"/>
+<text x="106" y="2254" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">runEvery(200ms) 检查 g_running</text>
+<circle cx="90" cy="2278" r="4" fill="#3b82f6"/>
+<text x="106" y="2284" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">baseLoop.loop()</text>
+<rect x="830" y="1950" width="740" height="580" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="830" y="1950" width="740" height="58" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<rect x="830" y="1980" width="740" height="28" rx="0" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<circle cx="868" cy="1979" r="17" fill="#38bdf8"/>
+<text x="868" y="1987" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#082f49" text-anchor="middle" opacity="1">2</text>
+<text x="898" y="1989" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="start" opacity="1">建立连接</text>
+<circle cx="860" cy="2038" r="4" fill="#3b82f6"/>
+<text x="876" y="2044" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">listen fd 可读 → Channel 回调</text>
+<circle cx="860" cy="2068" r="4" fill="#3b82f6"/>
+<text x="876" y="2074" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">Acceptor::handleRead</text>
+<text x="900" y="2104" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">accept4 循环到 EAGAIN</text>
+<circle cx="860" cy="2128" r="4" fill="#3b82f6"/>
+<text x="876" y="2134" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">TcpServer::newConnection</text>
+<text x="900" y="2164" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">round-robin 选 worker loop</text>
+<text x="900" y="2194" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">创建 TcpConnection + Codec</text>
+<circle cx="860" cy="2218" r="4" fill="#3b82f6"/>
+<text x="876" y="2224" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">worker-&gt;runInLoop(connectEstablished)</text>
+<text x="900" y="2254" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">channel.tie(self) 保活</text>
+<text x="900" y="2284" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">enableReading()</text>
+<text x="900" y="2314" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">connectionCallback(conn)</text>
+<rect x="1600" y="1950" width="740" height="580" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="1600" y="1950" width="740" height="58" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<rect x="1600" y="1980" width="740" height="28" rx="0" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<circle cx="1638" cy="1979" r="17" fill="#38bdf8"/>
+<text x="1638" y="1987" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#082f49" text-anchor="middle" opacity="1">3</text>
+<text x="1668" y="1989" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="start" opacity="1">读数据</text>
+<circle cx="1630" cy="2038" r="4" fill="#3b82f6"/>
+<text x="1646" y="2044" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">epoll_wait 返回 EPOLLIN</text>
+<circle cx="1630" cy="2068" r="4" fill="#3b82f6"/>
+<text x="1646" y="2074" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">Channel::handleEvent</text>
+<circle cx="1630" cy="2098" r="4" fill="#3b82f6"/>
+<text x="1646" y="2104" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">TcpConnection::handleRead</text>
+<text x="1670" y="2134" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">recv 循环到 EAGAIN</text>
+<text x="1670" y="2164" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">追加到 inputBuffer_</text>
+<circle cx="1630" cy="2188" r="4" fill="#3b82f6"/>
+<text x="1646" y="2194" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">Codec::decode(inputBuffer_)</text>
+<text x="1670" y="2224" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">切出完整帧</text>
+<text x="1670" y="2254" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">emit(Message{frame, type})</text>
+<circle cx="1630" cy="2278" r="4" fill="#3b82f6"/>
+<text x="1646" y="2284" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">messageCallback</text>
+<text x="1670" y="2314" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">handle_http / MqttHub / echo</text>
+<circle cx="1630" cy="2338" r="4" fill="#3b82f6"/>
+<text x="1646" y="2344" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">recv() == 0 → handleClose</text>
+<rect x="60" y="2560" width="740" height="580" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="60" y="2560" width="740" height="58" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<rect x="60" y="2590" width="740" height="28" rx="0" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<circle cx="98" cy="2589" r="17" fill="#38bdf8"/>
+<text x="98" y="2597" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#082f49" text-anchor="middle" opacity="1">4</text>
+<text x="128" y="2599" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="start" opacity="1">写数据</text>
+<circle cx="90" cy="2648" r="4" fill="#3b82f6"/>
+<text x="106" y="2654" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">conn-&gt;send(data)</text>
+<circle cx="90" cy="2678" r="4" fill="#3b82f6"/>
+<text x="106" y="2684" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">在 loop 线程？</text>
+<text x="130" y="2714" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">是 → sendInLoop</text>
+<text x="130" y="2744" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">否 → 拷贝 + queueInLoop</text>
+<text x="178" y="2774" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">+ eventfd 唤醒</text>
+<circle cx="90" cy="2798" r="4" fill="#3b82f6"/>
+<text x="106" y="2804" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">无排队数据 → 直接 ::send</text>
+<circle cx="90" cy="2828" r="4" fill="#3b82f6"/>
+<text x="106" y="2834" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">没发完 → outputBuffer_ + enableWriting</text>
+<circle cx="90" cy="2858" r="4" fill="#3b82f6"/>
+<text x="106" y="2864" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">EPOLLOUT → handleWrite</text>
+<text x="130" y="2894" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">循环 send 到 EAGAIN</text>
+<circle cx="90" cy="2918" r="4" fill="#3b82f6"/>
+<text x="106" y="2924" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">发完 → disableWriting</text>
+<text x="178" y="2954" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">+ writeCompleteCallback</text>
+<circle cx="90" cy="2978" r="4" fill="#3b82f6"/>
+<text x="106" y="2984" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">出错 → handleError → handleClose</text>
+<rect x="830" y="2560" width="740" height="580" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="830" y="2560" width="740" height="58" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<rect x="830" y="2590" width="740" height="28" rx="0" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<circle cx="868" cy="2589" r="17" fill="#38bdf8"/>
+<text x="868" y="2597" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#082f49" text-anchor="middle" opacity="1">5</text>
+<text x="898" y="2599" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="start" opacity="1">关闭连接</text>
+<circle cx="860" cy="2648" r="4" fill="#3b82f6"/>
+<text x="876" y="2654" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">触发：recv==0 / EPOLLERR / forceClose</text>
+<circle cx="860" cy="2678" r="4" fill="#3b82f6"/>
+<text x="876" y="2684" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">handleClose</text>
+<text x="900" y="2714" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">state = disconnected</text>
+<text x="900" y="2744" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">channel.disableAll()</text>
+<circle cx="860" cy="2768" r="4" fill="#3b82f6"/>
+<text x="876" y="2774" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">connectionCallback(conn) 断开通知</text>
+<circle cx="860" cy="2798" r="4" fill="#3b82f6"/>
+<text x="876" y="2804" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">closeCallback</text>
+<text x="900" y="2834" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">TcpServer::removeConnection</text>
+<text x="900" y="2864" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">connections_.erase(name)</text>
+<circle cx="860" cy="2888" r="4" fill="#3b82f6"/>
+<text x="876" y="2894" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">connectDestroyed</text>
+<text x="900" y="2924" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">channel.remove()</text>
+<text x="900" y="2954" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">registered_ = false</text>
+<circle cx="860" cy="2978" r="4" fill="#3b82f6"/>
+<text x="876" y="2984" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">析构 → close(fd)</text>
+<rect x="1600" y="2560" width="740" height="580" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" opacity="1"/>
+<rect x="1600" y="2560" width="740" height="58" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<rect x="1600" y="2590" width="740" height="28" rx="0" fill="#0f172a" stroke="#0f172a" stroke-width="0" opacity="1"/>
+<circle cx="1638" cy="2589" r="17" fill="#38bdf8"/>
+<text x="1638" y="2597" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="700" fill="#082f49" text-anchor="middle" opacity="1">6</text>
+<text x="1668" y="2599" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="start" opacity="1">定时器 &amp; 跨线程</text>
+<text x="1646" y="2654" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">定时器</text>
+<text x="1670" y="2690" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">runAfter(ms, cb)</text>
+<text x="1670" y="2720" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">TimerQueue::addTimer → 小顶堆</text>
+<text x="1670" y="2750" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">poll(timeout = nextTimeoutMs)</text>
+<text x="1670" y="2780" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">handleExpired 执行 cb</text>
+<text x="1670" y="2810" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">周期任务: when = now + interval 重排</text>
+<text x="1646" y="2852" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="21" font-weight="700" fill="#0f172a" text-anchor="start" opacity="1">跨线程任务</text>
+<text x="1670" y="2888" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">线程 A: loop-&gt;queueInLoop(fn)</text>
+<text x="1670" y="2918" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">pendingFunctors_.push(fn)</text>
+<text x="1670" y="2948" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">write(eventfd, 1)</text>
+<text x="1670" y="2978" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">线程 B: epoll_wait 醒来</text>
+<text x="1670" y="3008" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="20" font-weight="400" fill="#1e293b" text-anchor="start" opacity="1">doPendingFunctors() → fn()</text>
+<text x="80" y="3200" font-family="Consolas, Cascadia Mono, Microsoft YaHei, monospace" font-size="18" font-weight="600" fill="#64748b" text-anchor="start" opacity="1">app_center / net-server</text>
+<text x="2320" y="3200" font-family="Microsoft YaHei, SimHei, Noto Sans SC, sans-serif" font-size="18" font-weight="400" fill="#64748b" text-anchor="end" opacity="1">epoll ET · one loop per thread · pluggable codec</text>
+</svg>
